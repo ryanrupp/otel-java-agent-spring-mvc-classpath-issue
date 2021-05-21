@@ -1,8 +1,16 @@
 Reproduces the following error:
 
 ```
-org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [io.opentelemetry.javaagent.instrumentation.springwebmvc.HandlerMappingResourceNameFilter] for bean with name 'otelAutoDispatcherFilter'; nested exception is java.lang.ClassNotFoundException: io.opentelemetry.javaagent.instrumentation.springwebmvc.HandlerMappingResourceNameFilter
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1392)
+Caused by:
+java.lang.ClassNotFoundException: io.opentelemetry.javaagent.instrumentation.springwebmvc.HandlerMappingResourceNameFilter
+	at org.eclipse.jetty.webapp.WebAppClassLoader.loadClass(WebAppClassLoader.java:565)
+	at java.base/java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Unknown Source)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:275)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:437)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doResolveBeanClass(AbstractBeanFactory.java:1457)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1384)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:680)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:647)
 	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1518)
@@ -46,7 +54,7 @@ org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find clas
 	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:106)
 	at org.eclipse.jetty.server.Server.doStart(Server.java:371)
 	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:72)
-	at example.ApplicationMain.main(ApplicationMain.java:40)
+	at example.ApplicationMain.main(ApplicationMain.java:44)
 ```
 
 When attaching the OTEL Java Agent against an application where:
