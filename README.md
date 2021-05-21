@@ -54,9 +54,8 @@ When attaching the OTEL Java Agent against an application where:
 1. The main application hosts embedded Jetty + Spring MVC dependencies
 2. The WAR is a simple layer that just hosts web service artifacts (controller), leveraging the common libraries (Spring) from the main application server
 
-
-To reproduce:
-
-1. `mvn clean install`
-2. `docker build -t otel-issue .`
-3. `docker run otel-issue`
+```
+mvn clean install
+docker build -t otel-issue .
+docker run otel-issue
+```
