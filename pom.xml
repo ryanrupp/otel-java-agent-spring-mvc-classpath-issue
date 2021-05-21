@@ -9,7 +9,10 @@
     <properties>
         <jdk.version>1.8</jdk.version>
         <spring.version>5.1.6.RELEASE</spring.version>
-        <jetty.version>9.4.21.v20190926</jetty.version>
+        <!-- Fixed by 9.4.22 via https://github.com/eclipse/jetty.project/issues/4183 -->
+<!--        <jetty.version>9.4.22.v20191022</jetty.version>-->
+         <jetty.version>9.4.21.v20190926</jetty.version>
+
     </properties>
 
     <modules>

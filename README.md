@@ -1,3 +1,5 @@
+Edit this is fixed in Jetty 9.4.22 via https://github.com/eclipse/jetty.project/issues/4183
+
 Reproduces the following error:
 
 ```
