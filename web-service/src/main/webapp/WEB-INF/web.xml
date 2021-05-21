@@ -1,0 +1,25 @@
+<!DOCTYPE web-app
+        PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+    <servlet>
+        <servlet-name>SpringDispatchServlet</servlet-name>
+        <display-name>Spring Dispatch Servlet</display-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <!-- Bootstrap Spring config with "common" configuration settings and then bring in our own controllers -->
+            <param-value>/WEB-INF/spring/webservices-config.xml,/WEB-INF/spring/webservices.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SpringDispatchServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>
