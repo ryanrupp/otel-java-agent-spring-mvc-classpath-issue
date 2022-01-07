@@ -1,4 +1,4 @@
-Reproduces the following error:
+Reproduces the issue described in https://github.com/open-telemetry/opentelemetry-java-instrumentation/issues/5032
 
 Output with Java 11:
 
