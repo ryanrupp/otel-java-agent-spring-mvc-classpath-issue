@@ -42,5 +42,8 @@ public class ApplicationMain {
         server.setHandler(contexts);
 
         server.start();
+
+        // Make the exception happen!
+        ReproduceReflectionProxyIssue.setup();
     }
 }

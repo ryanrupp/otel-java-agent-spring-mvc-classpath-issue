@@ -8,7 +8,9 @@ COPY server/target/app-server-0.0.1-SNAPSHOT.jar .
 COPY web-service/target/*.war war/
 
 # Pull down the java agent which we'll attach
-RUN wget --directory-prefix=/app/agent https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v1.2.0/opentelemetry-javaagent-all.jar
+# 1.7.0 = exception occurs (also occurs on current release 1.9.1)
+# 1.6.2 = no exception
+RUN wget --directory-prefix=/app/agent https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v1.7.0/opentelemetry-javaagent-all.jar
+#RUN wget --directory-prefix=/app/agent https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v1.6.2/opentelemetry-javaagent-all.jar
 
-# can toggle spring-webmvc off here to get a working launch
-CMD ["java", "-cp", "*", "-javaagent:/app/agent/opentelemetry-javaagent-all.jar", "-Dotel.traces.exporter=logging", "-Dotel.instrumentation.spring-webmvc.enabled=true", "example.ApplicationMain", "/app/war"]
+CMD ["java", "-cp", "*", "-javaagent:/app/agent/opentelemetry-javaagent-all.jar", "-Dotel.traces.exporter=logging", "-Dotel.javaagent.debug=true", "example.ApplicationMain", "/app/war"]
